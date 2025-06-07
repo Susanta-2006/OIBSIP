@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaming Platform</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    
+    .game-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.game-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px 0;
+  scrollbar-width: none; /* Firefox */
+}
+.game-slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.game-card {
+  flex: 0 0 300px; /* fixed card width */
+  max-width: 300px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.slider-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 10px;
+  border-radius: 50%;
+  user-select: none;
+  transition: background 0.3s ease;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.prev-btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.next-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-card {
+    flex: 0 0 240px;
+    max-width: 240px;
+  }
+  .game-slider-wrapper {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-card {
+    flex: 0 0 200px;
+    max-width: 200px;
+  }
+  .slider-btn {
+    height: 40px;
+    width: 40px;
+    font-size: 1.5rem;
+  }
+}
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d1117;
+      color: #eaeaea;
+    }
+    
+    .oye {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+    }
+    .img_one {
+      background: linear-gradient(135deg, #1e1e2f, #121212);
+      height: 50vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+    .head {
+      color: #f72585;
+      font-weight: 700;
+      font-size: 2.5rem;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+    .head:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 8px #f72585;
+    }
+    .para {
+      color: #cbd5e1;
+      font-size: 1.2rem;
+      margin-top: 10px;
+      transition: transform 0.3s ease;
+    }
+    .para:hover {
+      transform: translateX(10px);
+    }
+    .desc {
+      color: #94a3b8;
+      margin-top: 10px;
+      max-width: 600px;
+      font-size: 1rem;
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out forwards;
+      animation-delay: 1s;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+      color: #e2e8f0;
+      transition: color 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: #f72585;
+      transform: scale(1.05);
+    }
+    .navbar-dark .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #f72585;
+      left: 0;
+      bottom: 0;
+      transition: 0.3s ease;
+    }
+    .navbar-dark .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    @keyframes fadeIn {
+      100% {
+        opacity: 1;
+      }
+    }
+    .animated-btn {
+      background-color: #f72585;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 0 10px #f72585;
+      transition: all 0.4s ease;
+    }
+    .animated-btn:hover {
+      background-color: transparent;
+      color: #f72585;
+      box-shadow: 0 0 20px #f72585, 0 0 30px #f72585;
+      transform: scale(1.05);
+    }
+    .card {
+      background-color: #1e1e2f;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    
+    }
+    
+    .card img {
+      height: 150px;
+      object-fit: contain;
+      padding-top: 20px;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+      font-size: 2rem;
+      color: #f72585;
+    }
+    .carousel-indicators li {
+      background-color: #f72585;
+    }
+    .btn-category {
+      background-color: #f72585;
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 15px;
+      margin-top: 10px;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-category:hover {
+      background-color: transparent;
+      color: #f72585;
+      border: 1px solid #f72585;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid w-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/navbar-logo-img.png" class="oye" alt="Logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link" href="#">About Me</a>
+          <a class="nav-link" href="#">Projects</a>
+          <a class="nav-link" href="#">Testimonials</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="img_one d-flex justify-content-start">
+      <div class="obj pt-3 m-3">
+        <h1 class="head">Let's start with us</h1>
+        <p class="para">Our platform gives you a huge gaming experience.</p>
+        <p class="desc">Welcome to the ultimate gaming zone! Whether you're here for high-octane action, strategic thinking, or just pure chaotic fun, you're in the right place.</p>
+      </div>
+      <div class="obj pt-3 m-3 ml-auto">
+       <img src="gameboy.png" height="350px" wdth="400px" >
+      </div>
+    </div>
+    <div id="gamingCarousel" class="carousel slide mt-5" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#gamingCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#gamingCarousel" data-slide-to="1"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/744/744466.png" class="card-img-top" alt="Racing">
+                <div class="card-body">
+                  <h5 class="card-title">Racing Games</h5>
+                  <p class="card-text">Speed thrills in every corner of the track.</p>
+                  <button class="btn-category">Explore</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3144/3144460.png" class="card-img-top" alt="Action">
+                <div class="card-body">
+                  <h5 class="card-title">Action Games</h5>
+                  <p class="card-text">Adrenaline-pumping adventures await.</p>
+                  <button class="btn-category">Explore</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3105/3105791.png" class="card-img-top" alt="Puzzle">
+                <div class="card-body">
+                  <h5 class="card-title">Puzzle Games</h5>
+                  <p class="card-text">Twist your mind with clever logic.</p>
+                  <button class="btn-category">Explore</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/2944/2944517.png" class="card-img-top" alt="Shooting">
+                <div class="card-body">
+                  <h5 class="card-title">Shooting Games</h5>
+                  <p class="card-text">Aim, fire, and dominate the field.</p>
+                  <button class="btn-category">Explore</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/2848/2848603.png" class="card-img-top" alt="Strategy">
+                <div class="card-body">
+                  <h5 class="card-title">Strategy Games</h5>
+                  <p class="card-text">Outsmart your opponents with tactics.</p>
+                  <button class="btn-category">Explore</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3314/3314463.png" class="card-img-top" alt="Arcade">
+                <div class="card-body">
+                  <h5 class="card-title">Arcade Games</h5>
+                  <p class="card-text">Classic fun with a modern twist.</p>
+                  <button class="btn-category">Explore</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#gamingCarousel" role="button" data-slide="prev">
+        <span aria-hidden="true">&#10094;</span>
+      </a>
+      <a class="carousel-control-next" href="#gamingCarousel" role="button" data-slide="next">
+        <span aria-hidden="true">&#10095;</span>
+      </a>
+    </div>
+    <div class="container pc_gaming py-5">
+      <h2 class="text-center mb-4 text-light">Top Gaming Consoles</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <img src="ps5.png" class="card-img-top" alt="PlayStation 5">
+            <div class="card-body">
+              <h5 class="card-title">PlayStation 5</h5>
+              <p class="card-text">Sony’s latest console offers blazing-fast load times, ray tracing, and an innovative DualSense controller.</p>
+              <button class="btn-category">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <img src="xbox.png" class="card-img-top" alt="Xbox Series X">
+            <div class="card-body">
+              <h5 class="card-title">Xbox Series X</h5>
+              <p class="card-text">Microsoft’s powerhouse console with 4K support, SSD speed, and Game Pass access.</p>
+              <button class="btn-category">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <img src="nintendo-7794.png" class="card-img-top" alt="Nintendo Switch">
+            <div class="card-body">
+              <h5 class="card-title">Nintendo Switch</h5>
+              <p class="card-text">Play on-the-go or docked on your TV. Enjoy classics and fun party games with family and friends.</p>
+              <button class="btn-category">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card text-center">
+            <img src="steam-deck-seeklogo.png" class="card-img-top" alt="Steam Deck">
+            <div class="card-body">
+              <h5 class="card-title">Steam Deck</h5>
+              <p class="card-text">Your full Steam library in your hands with Valve’s powerful portable gaming PC.</p>
+              <button class="btn-category">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card text-center">
+            <img src="ROG logo_red (1).png" class="rog card-img-top" alt="ASUS ROG Ally" height=100px width=100px >
+            <div class="card-body">
+              <h5 class="card-title">ASUS ROG Ally</h5>
+              <p class="card-text">A fast, sleek Windows handheld console for serious gaming anywhere you go.</p>
+              <button class="btn-category">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+<div class="game-slider-wrapper">
+  <button class="slider-btn prev-btn" aria-label="Scroll Left">&#10094;</button>
+  <div class="game-slider">
+    <div class="card bg-dark text-white h-100 shadow-lg game-card">
+      <img src="bgmi.png" class="card-img-top" alt="BGMI" style="height: 400px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title">BGMI</h5>
+        <p class="card-text">Battle. Survive. Dominate the battlegrounds in India’s favorite BR game.</p>
+      </div>
+    </div>
+    <div class="card bg-dark text-white h-100 shadow-lg game-card pb-4">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1938090/capsule_616x353.jpg" class="card-img-top" alt="Call of Duty" style="height: 400px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title">Call of Duty</h5>
+        <p class="card-text">Experience high-action FPS warfare like never before.</p>
+      </div>
+    </div>
+    <div class="card bg-dark text-white h-100 shadow-lg game-card">
+      <img src="ff.png" class="card-img-top" alt="Free Fire" style="height: 400px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title">Free Fire</h5>
+        <p class="card-text">Fast-paced battles in a compact survival shooter arena.</p>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white h-100 shadow-lg game-card pb-4">
+      <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota2_social.jpg" class="card-img-top" alt="Dota 2" style="height: 400px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title">DOTA 2</h5>
+        <p class="card-text">Strategize with your team in the world’s most competitive MOBA.</p>
+      </div>
+    </div>
+    <div class="card bg-dark text-white h-100 shadow-lg game-card">
+      <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" class="card-img-top" alt="GTA V" style="height: 400px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title">GTA V</h5>
+        <p class="card-text">Explore, hustle, and cause chaos in the streets of Los Santos.</p>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white h-100 shadow-lg game-card">
+      <img src="https://cdn.akamai.steamstatic.com/steam/apps/883710/header.jpg" class="card-img-top" alt="Resident Evil" style="height: 400px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title">Resident Evil</h5>
+        <p class="card-text">Survive the horror in a world infected with fear and the undead.</p>
+      </div>
+    </div>
+  </div>
+  <button class="slider-btn next-btn" aria-label="Scroll Right">&#10095;</button>
+</div>
+
+
+  <footer style="background-color: #0b0f19; padding: 40px 0; text-align: center;">
+  <div class="container">
+    <h5 style="color: #e2e8f0; margin-bottom: 20px;">Connect with us</h5>
+    <div class="d-flex justify-content-center align-items-center flex-wrap mb-3">
+      <a href="https://www.linkedin.com" target="_blank" class="mx-3 m-2">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="40" height="40" style="border-radius: 50%; background: #ffffff11; padding: 8px;">
+      </a>
+      <a href="https://www.google.com" target="_blank" class="mx-3 m-2">
+        <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="Google" width="40" height="40" style="border-radius: 50%; background: #ffffff11; padding: 8px;">
+      </a>
+      <a href="https://www.instagram.com" target="_blank" class="mx-3 m-2">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="40" height="40" style="border-radius: 50%; background: #ffffff11; padding: 8px;">
+      </a>
+      <a href="https://www.twitter.com" target="_blank" class="mx-3 m-2">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="40" height="40" style="border-radius: 50%; background: #ffffff11; padding: 8px;">
+      </a>
+      <a href="https://plus.google.com" target="_blank" class="mx-3 m-2">
+        <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="Google Plus" width="40" height="40" style="border-radius: 50%; background: #ffffff11; padding: 8px;">
+      </a>
+    </div>
+    <a href="mailto:contact@yourdomain.com" class="animated-btn">Contact Us</a>
+    <p style="color: #64748b; font-size: 0.9rem; margin-top: 20px;">&copy; 2025 Your Gaming Platform. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+  const slider = document.querySelector('.game-slider');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+
+  const scrollAmount = 320;
+
+  prevBtn.addEventListener('click', () => {
+    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+  
+</script>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
